@@ -32,7 +32,7 @@ class App extends Component {
     </fieldset>
     <ul>
       {this.state.listTodo.map(function(todo){
-        return <Linhazinha key={todo.id} todo={todo} mudou={() => this.notificarMudar()} />
+        return <Linhazinha key={todo.id} {...todo} mudou={() => this.notificarMudar()} />
       }.bind(this))}
     </ul>
     </div>
@@ -44,12 +44,12 @@ export default App;
 class Linhazinha extends Component {
   checkboxHandler(event) {
     // TODO: fazer direito. Usar uma classe para TODO e um método para alterar valor'
-    this.props.todo.isComplete = !this.props.todo.isComplete; 
+    this.props.isComplete = !this.props.isComplete; 
     this.props.mudou();
   }
 
   render() {
     // onchange={this.checkboxHandler.bind(this,todo)}
-    return <li><input type="checkbox" checked={this.props.todo.isComplete} onChange={this.checkboxHandler.bind(this)} /> {this.props.todo.text}</li> 
+    return <li><input type="checkbox" checked={this.props.isComplete} onChange={this.checkboxHandler.bind(this)} /> {this.props.text}</li> 
   }
 }  
